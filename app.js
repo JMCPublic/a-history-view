@@ -3,6 +3,10 @@ const civilizations = [
     id: "england",
     name: "England",
     region: "Western Europe",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/England"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/England/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -70,6 +74,10 @@ const civilizations = [
     id: "france",
     name: "France",
     region: "Western Europe",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/France"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/france/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -127,6 +135,10 @@ const civilizations = [
     id: "china",
     name: "China",
     region: "East Asia",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/China"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/china/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -184,6 +196,10 @@ const civilizations = [
     id: "japan",
     name: "Japan",
     region: "East Asia",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/Japan"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/japan/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -241,6 +257,10 @@ const civilizations = [
     id: "islamic-world",
     name: "Islamic World",
     region: "Middle East & North Africa",
+    sources: [
+      ["Britannica", "https://www.britannica.com/topic/Islamic-world"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/islam/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -295,9 +315,135 @@ const civilizations = [
     ]
   },
   {
+    id: "byzantine",
+    name: "Byzantine Empire",
+    region: "Eastern Mediterranean",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/Byzantine-Empire"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/Byzantine_Empire/"]
+    ],
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Basil II to Alexios I",
+        dynasty: "Macedonian / Komnenian",
+        government: "Imperial monarchy",
+        event: "The empire moves from Basil II's military strength into crisis after Manzikert in 1071.",
+        why: "Byzantium still commands wealth and legitimacy, but Turkish expansion and internal instability weaken control of Anatolia.",
+        drivers: [["Imperial administration", "positive"], ["Anatolian losses", "negative"], ["Court instability", "negative"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Komnenian emperors",
+        dynasty: "Komnenian",
+        government: "Imperial monarchy",
+        event: "Komnenian restoration stabilizes Byzantium while crusader powers complicate eastern Mediterranean politics.",
+        why: "Diplomacy and military reform recover some strength, but reliance on Italian trade and crusader politics creates new vulnerabilities.",
+        drivers: [["Military reform", "positive"], ["Crusader pressure", "mixed"], ["Trade dependency", "negative"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Alexios III to Michael VIII",
+        dynasty: "Angelid / Laskarid / Palaiologan",
+        government: "Fragmented imperial states",
+        event: "The Fourth Crusade sacks Constantinople in 1204; Byzantine rule is restored in 1261.",
+        why: "The capital returns to Byzantine hands, but the empire never fully recovers its resources or strategic depth.",
+        drivers: [["Capital restored", "positive"], ["Latin occupation", "negative"], ["Resource loss", "negative"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Palaiologan emperors",
+        dynasty: "Palaiologan",
+        government: "Reduced empire",
+        event: "Civil wars and Ottoman expansion reduce Byzantium to a shrinking set of territories.",
+        why: "Internal divisions and lack of money prevent effective defense while Ottoman power grows around the capital.",
+        drivers: [["Civil war", "negative"], ["Ottoman pressure", "negative"], ["Diplomacy", "mixed"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Manuel II to Constantine XI",
+        dynasty: "Palaiologan",
+        government: "Imperial city-state",
+        event: "Constantinople falls to Mehmed II in 1453.",
+        why: "A once vast empire has become strategically isolated, and Ottoman siege technology ends Byzantine rule.",
+        drivers: [["Gunpowder siegecraft", "negative"], ["Strategic isolation", "negative"], ["Imperial legacy", "mixed"]]
+      }
+    ]
+  },
+  {
+    id: "mongol",
+    name: "Mongol Empire",
+    region: "Eurasian Steppe",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/Mongol-empire"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/Mongol_Empire/"]
+    ],
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Steppe confederation leaders",
+        dynasty: "Pre-imperial Mongol tribes",
+        government: "Tribal confederations",
+        event: "Mongol and neighbouring steppe groups remain politically fragmented before imperial unification.",
+        why: "Pastoral mobility and warfare traditions exist, but no single leader has yet unified the steppe at scale.",
+        drivers: [["Horse culture", "positive"], ["Fragmentation", "negative"], ["Steppe networks", "mixed"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Yesugei, Temujin, rival khans",
+        dynasty: "Borjigin rise",
+        government: "Tribal politics",
+        event: "Temujin emerges from violent steppe politics before becoming Genghis Khan in 1206.",
+        why: "Personal alliances, military talent, and social reorganization begin turning steppe rivalry into empire-building capacity.",
+        drivers: [["Leadership", "positive"], ["Clan rivalry", "negative"], ["Military organization", "positive"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Genghis Khan, Ogedei, Mongke, Kublai Khan",
+        dynasty: "Borjigin",
+        government: "Imperial khanate",
+        event: "Mongol armies create the largest contiguous land empire in history.",
+        why: "Mobility, discipline, intelligence networks, and siege adaptation allow rapid conquest across Eurasia.",
+        drivers: [["Cavalry mobility", "positive"], ["Siege adaptation", "positive"], ["Imperial overreach", "mixed"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Yuan, Ilkhanate, Golden Horde, Chagatai rulers",
+        dynasty: "Successor khanates",
+        government: "Divided khanates",
+        event: "The united empire fragments while Mongol successor states continue to shape Eurasia.",
+        why: "The empire's scale makes unified rule difficult, but trade, diplomacy, and transmission across Eurasia remain significant.",
+        drivers: [["Fragmentation", "negative"], ["Eurasian trade", "positive"], ["Succession politics", "negative"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Northern Yuan and steppe khans",
+        dynasty: "Post-imperial Mongol polities",
+        government: "Regional khanates",
+        event: "Mongol power persists regionally but no longer dominates Eurasia as a unified empire.",
+        why: "Sedentary empires recover, trade routes shift, and steppe politics return to regional competition.",
+        drivers: [["Regional survival", "mixed"], ["Lost unity", "negative"], ["Steppe mobility", "positive"]]
+      }
+    ]
+  },
+  {
     id: "aztec",
     name: "Aztec Empire",
     region: "Mesoamerica",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/Aztec"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/Aztec_Civilization/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -345,6 +491,10 @@ const civilizations = [
     id: "mali",
     name: "Mali Empire",
     region: "West Africa",
+    sources: [
+      ["Britannica", "https://www.britannica.com/place/Mali-historical-empire-Africa"],
+      ["World History Encyclopedia", "https://www.worldhistory.org/Mali_Empire/"]
+    ],
     periods: [
       {
         start: 1000,
@@ -418,7 +568,7 @@ const snapshots = [
   }
 ];
 
-const defaultSlots = ["england", "france", "china", "islamic-world", "aztec"];
+const defaultSlots = ["england", "byzantine", "china", "islamic-world", "mongol"];
 const slider = document.querySelector("#yearSlider");
 const selectedYear = document.querySelector("#selectedYear");
 const selectedBand = document.querySelector("#selectedBand");
@@ -490,6 +640,16 @@ function render() {
       driver.className = `driver ${type}`;
       driver.textContent = label;
       driverContainer.append(driver);
+    });
+
+    const sourceContainer = node.querySelector(".sources");
+    civilization.sources.forEach(([label, url]) => {
+      const source = document.createElement("a");
+      source.href = url;
+      source.target = "_blank";
+      source.rel = "noreferrer";
+      source.textContent = label;
+      sourceContainer.append(source);
     });
 
     cards.append(node);

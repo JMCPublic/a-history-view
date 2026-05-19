@@ -1,15 +1,28 @@
-# Time Map Prototype
+# A History View Prototype
 
 Open `index.html` in a browser to try the first working version.
 
 This prototype includes:
 
 - A timeline slider from 1000 to 1500 in 10-year bands
-- Five side-by-side civilization comparison panels
+- Five side-by-side civilization comparison panels designed to read across the page
 - Selectors for changing each panel
-- Starter data for England, France, China, Japan, the Islamic world, the Aztec Empire, and Mali
+- Starter data for England, France, China, Japan, the Islamic world, Byzantium, the Mongol Empire, the Aztec Empire, and Mali
 - Ruler, dynasty/state, government, main event, and "why it mattered" fields
 - Pressure and momentum tags for historical drivers
 - Pin buttons for comparison cards
+- Source links for each civilization
 
-This is intentionally a small browser-only MVP. The next natural step is to add a real data model, more civilizations, source links, and a map layer with historical borders or regions.
+This is intentionally a small browser-only MVP. The app is still using local JavaScript data so it can be shaped quickly before moving to a database.
+
+## Data direction
+
+The current data already maps cleanly to future Supabase tables:
+
+- `civilizations`: name, region, type, summary
+- `periods`: civilization id, start year, end year, ruler, dynasty/state, government
+- `events`: period id, title, description, importance
+- `drivers`: period id, label, effect type
+- `sources`: civilization id or period id, title, url
+
+The next natural step is to separate the data from `app.js` into a JSON file, then expand it with more periods and sources before creating Supabase tables.

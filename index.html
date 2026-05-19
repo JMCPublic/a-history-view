@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Time Map Prototype</title>
+    <title>A History View Prototype</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="app-shell">
       <section class="masthead">
         <div>
-          <p class="eyebrow">Synchronized world history viewer</p>
-          <h1>Time Map</h1>
+          <p class="eyebrow">Parallel history viewer</p>
+          <h1>A History View</h1>
           <p class="intro">
-            Compare what was happening across civilizations at the same moment in history.
+            Compare what was happening across civilizations at the same moment in history, then dig into the pressures that shaped change.
           </p>
         </div>
         <div class="year-control" aria-label="Timeline controls">
@@ -67,7 +67,18 @@
         </aside>
       </section>
 
-      <section id="cards" class="cards" aria-live="polite"></section>
+      <section class="comparison-shell" aria-label="Civilization comparison">
+        <div class="comparison-labels" aria-hidden="true">
+          <span>Ruler</span>
+          <span>Dynasty / State</span>
+          <span>Government</span>
+          <span>Main Event</span>
+          <span>Why It Mattered</span>
+          <span>Pressure & Momentum</span>
+          <span>Sources</span>
+        </div>
+        <section id="cards" class="cards" aria-live="polite"></section>
+      </section>
     </main>
 
     <template id="cardTemplate">
@@ -93,17 +104,21 @@
             <dd class="government"></dd>
           </div>
         </dl>
-        <section>
+        <section class="event-block">
           <h3>Main Event</h3>
           <p class="event"></p>
         </section>
-        <section>
+        <section class="why-block">
           <h3>Why It Mattered</h3>
           <p class="why"></p>
         </section>
-        <section>
+        <section class="drivers-block">
           <h3>Pressure & Momentum</h3>
           <div class="drivers"></div>
+        </section>
+        <section class="sources-block">
+          <h3>Sources</h3>
+          <div class="sources"></div>
         </section>
       </article>
     </template>
