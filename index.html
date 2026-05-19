@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Time Map Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="masthead">
+        <div>
+          <p class="eyebrow">Synchronized world history viewer</p>
+          <h1>Time Map</h1>
+          <p class="intro">
+            Compare what was happening across civilizations at the same moment in history.
+          </p>
+        </div>
+        <div class="year-control" aria-label="Timeline controls">
+          <div class="year-readout">
+            <span id="selectedYear">1200</span>
+            <span id="selectedBand">1200-1209</span>
+          </div>
+          <input id="yearSlider" type="range" min="1000" max="1500" step="10" value="1200">
+          <div class="range-labels">
+            <span>1000</span>
+            <span>1500</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Civilization selectors">
+        <div>
+          <label for="slot1">Panel 1</label>
+          <select id="slot1"></select>
+        </div>
+        <div>
+          <label for="slot2">Panel 2</label>
+          <select id="slot2"></select>
+        </div>
+        <div>
+          <label for="slot3">Panel 3</label>
+          <select id="slot3"></select>
+        </div>
+        <div>
+          <label for="slot4">Panel 4</label>
+          <select id="slot4"></select>
+        </div>
+        <div>
+          <label for="slot5">Panel 5</label>
+          <select id="slot5"></select>
+        </div>
+      </section>
+
+      <section class="map-band" aria-label="World overview">
+        <div class="map-panel">
+          <div class="grid-lines"></div>
+          <div class="region-marker europe">Europe</div>
+          <div class="region-marker middle-east">Middle East</div>
+          <div class="region-marker east-asia">East Asia</div>
+          <div class="region-marker americas">Americas</div>
+          <div class="region-marker africa">Africa</div>
+        </div>
+        <aside class="moment-panel">
+          <h2>Global Snapshot</h2>
+          <p id="globalSnapshot"></p>
+        </aside>
+      </section>
+
+      <section id="cards" class="cards" aria-live="polite"></section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="history-card">
+        <header>
+          <div>
+            <p class="region"></p>
+            <h2></h2>
+          </div>
+          <button class="pin-button" type="button" aria-pressed="false" title="Pin card">Pin</button>
+        </header>
+        <dl class="facts">
+          <div>
+            <dt>Ruler</dt>
+            <dd class="ruler"></dd>
+          </div>
+          <div>
+            <dt>Dynasty / State</dt>
+            <dd class="dynasty"></dd>
+          </div>
+          <div>
+            <dt>Government</dt>
+            <dd class="government"></dd>
+          </div>
+        </dl>
+        <section>
+          <h3>Main Event</h3>
+          <p class="event"></p>
+        </section>
+        <section>
+          <h3>Why It Mattered</h3>
+          <p class="why"></p>
+        </section>
+        <section>
+          <h3>Pressure & Momentum</h3>
+          <div class="drivers"></div>
+        </section>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

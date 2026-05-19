@@ -1,0 +1,501 @@
+const civilizations = [
+  {
+    id: "england",
+    name: "England",
+    region: "Western Europe",
+    periods: [
+      {
+        start: 1000,
+        end: 1059,
+        ruler: "Aethelred II, Cnut, Edward the Confessor",
+        dynasty: "House of Wessex / North Sea Empire",
+        government: "Kingdom",
+        event: "England moves through Danish conquest, Cnut's North Sea rule, and a restored Anglo-Saxon monarchy.",
+        why: "The kingdom is wealthy but politically exposed, with succession uncertainty and pressure from Scandinavia and Normandy.",
+        drivers: [["Trade wealth", "positive"], ["Succession pressure", "negative"], ["North Sea politics", "mixed"]]
+      },
+      {
+        start: 1060,
+        end: 1099,
+        ruler: "Harold II, then William I and William II",
+        dynasty: "House of Godwin / Norman Dynasty",
+        government: "Kingdom",
+        event: "The Norman Conquest transforms England after the Battle of Hastings in 1066.",
+        why: "A succession crisis opened the door to invasion, replacing the aristocracy and reshaping law, landholding, language, and royal power.",
+        drivers: [["Succession crisis", "negative"], ["Military invasion", "negative"], ["Centralized monarchy", "positive"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Henry I, Stephen, Henry II, Richard I",
+        dynasty: "Norman / Plantagenet",
+        government: "Kingdom",
+        event: "Civil war gives way to Plantagenet consolidation and expanding royal administration.",
+        why: "Legal and financial institutions grow stronger, but continental possessions tie England into costly European rivalries.",
+        drivers: [["Legal reform", "positive"], ["Civil conflict", "negative"], ["French territories", "mixed"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "John, Henry III, Edward I",
+        dynasty: "Plantagenet",
+        government: "Kingdom",
+        event: "Magna Carta limits royal authority in 1215, while Edward I expands campaigns in Wales and Scotland.",
+        why: "Baronial pressure forces negotiation over kingship, creating a lasting symbol of constrained rule.",
+        drivers: [["Baronial resistance", "mixed"], ["Legal precedent", "positive"], ["War costs", "negative"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Edward II, Edward III, Richard II",
+        dynasty: "Plantagenet",
+        government: "Kingdom",
+        event: "The Hundred Years' War begins, and the Black Death devastates population and labour systems.",
+        why: "War drives taxation and identity, while plague weakens old feudal labour structures and changes bargaining power.",
+        drivers: [["Plague disruption", "negative"], ["Military ambition", "mixed"], ["Labour change", "positive"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Henry IV to Henry VII",
+        dynasty: "Lancaster / York / Tudor",
+        government: "Kingdom",
+        event: "The Wars of the Roses culminate in Tudor rule after Bosworth in 1485.",
+        why: "Dynastic instability weakens noble factions, allowing the Tudors to rebuild stronger central monarchy.",
+        drivers: [["Dynastic conflict", "negative"], ["Noble fragmentation", "mixed"], ["Tudor consolidation", "positive"]]
+      }
+    ]
+  },
+  {
+    id: "france",
+    name: "France",
+    region: "Western Europe",
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Robert II, Henry I, Philip I",
+        dynasty: "Capetian",
+        government: "Kingdom",
+        event: "The Capetian monarchy holds limited direct power while great nobles dominate the kingdom.",
+        why: "France is politically fragmented, but dynastic continuity gives the crown a platform for slow expansion.",
+        drivers: [["Dynastic continuity", "positive"], ["Feudal fragmentation", "negative"], ["Agricultural growth", "positive"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Louis VI, Louis VII, Philip II",
+        dynasty: "Capetian",
+        government: "Kingdom",
+        event: "Royal authority expands, especially under Philip II against the Angevin empire.",
+        why: "Better administration and military success allow the crown to turn symbolic kingship into practical power.",
+        drivers: [["Royal administration", "positive"], ["Angevin rivalry", "mixed"], ["Urban growth", "positive"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Philip II, Louis IX, Philip IV",
+        dynasty: "Capetian",
+        government: "Kingdom",
+        event: "France becomes one of Europe's strongest monarchies, with Paris and royal law gaining importance.",
+        why: "The crown benefits from expanding bureaucracy, prestige, and control over former English-held territories.",
+        drivers: [["Bureaucracy", "positive"], ["Royal justice", "positive"], ["Church conflict", "mixed"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Philip IV to Charles VI",
+        dynasty: "Capetian / Valois",
+        government: "Kingdom",
+        event: "The Hundred Years' War and Black Death put France under severe strain.",
+        why: "Succession disputes, English invasion, fiscal pressure, and plague combine into a deep political crisis.",
+        drivers: [["Succession dispute", "negative"], ["Plague", "negative"], ["Tax capacity", "mixed"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Charles VI, Charles VII, Louis XI",
+        dynasty: "Valois",
+        government: "Kingdom",
+        event: "France recovers from civil war and English occupation, then strengthens under Louis XI.",
+        why: "Military reform, taxation, and territorial consolidation help the monarchy emerge stronger after disaster.",
+        drivers: [["Military reform", "positive"], ["Civil division", "negative"], ["Territorial consolidation", "positive"]]
+      }
+    ]
+  },
+  {
+    id: "china",
+    name: "China",
+    region: "East Asia",
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Zhenzong to Zhezong",
+        dynasty: "Northern Song",
+        government: "Imperial bureaucracy",
+        event: "The Song economy, cities, printing, and civil service institutions flourish.",
+        why: "Commercial growth and bureaucratic sophistication make Song China one of the world's most advanced societies.",
+        drivers: [["Printing", "positive"], ["Urban economy", "positive"], ["Northern military pressure", "negative"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Huizong to Guangzong",
+        dynasty: "Northern Song / Southern Song",
+        government: "Imperial bureaucracy",
+        event: "The Jurchen Jin conquer northern China, forcing the Song court south.",
+        why: "Economic strength survives, but military weakness and frontier pressure reshape the empire's geography.",
+        drivers: [["Commercial resilience", "positive"], ["Jin invasion", "negative"], ["Southern shift", "mixed"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Ningzong to Kublai Khan",
+        dynasty: "Southern Song / Yuan",
+        government: "Imperial bureaucracy under Mongol rule",
+        event: "Mongol conquest ends the Song and establishes the Yuan Dynasty.",
+        why: "The Mongol empire connects Eurasia but places China under foreign imperial rule with new social hierarchies.",
+        drivers: [["Mongol military power", "negative"], ["Eurasian connections", "positive"], ["Administrative disruption", "mixed"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Yuan emperors, then Hongwu",
+        dynasty: "Yuan / Ming",
+        government: "Imperial dynasty",
+        event: "The Yuan collapses and the Ming Dynasty begins in 1368.",
+        why: "Rebellion, fiscal stress, disease, and resentment of Mongol rule create conditions for native restoration.",
+        drivers: [["Rebellion", "negative"], ["Fiscal stress", "negative"], ["Ming restoration", "positive"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Yongle to Hongzhi",
+        dynasty: "Ming",
+        government: "Imperial bureaucracy",
+        event: "Ming China sponsors Zheng He's voyages, strengthens state systems, and later turns inward.",
+        why: "China has enormous administrative and manufacturing capacity, but court priorities shape how global its power becomes.",
+        drivers: [["Bureaucracy", "positive"], ["Maritime capacity", "positive"], ["Court factionalism", "negative"]]
+      }
+    ]
+  },
+  {
+    id: "japan",
+    name: "Japan",
+    region: "East Asia",
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Heian emperors and Fujiwara regents",
+        dynasty: "Heian court order",
+        government: "Imperial court with aristocratic regency",
+        event: "Court culture flourishes while provincial warrior families gain influence.",
+        why: "Aristocratic refinement masks a shift in real power toward armed regional elites.",
+        drivers: [["Court culture", "positive"], ["Provincial warriors", "mixed"], ["Weak central coercion", "negative"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Toba to Go-Toba; Minamoto no Yoritomo",
+        dynasty: "Late Heian / Kamakura",
+        government: "Imperial court and shogunate",
+        event: "The Genpei War leads to the Kamakura shogunate in 1192.",
+        why: "Military households turn political influence into formal warrior government.",
+        drivers: [["Samurai rise", "positive"], ["Clan war", "negative"], ["Dual government", "mixed"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Hojo regents under Kamakura shogunate",
+        dynasty: "Kamakura",
+        government: "Military shogunate",
+        event: "Japan repels Mongol invasions in 1274 and 1281.",
+        why: "Defense succeeds, but the cost of mobilization strains the shogunate because rewards are hard to distribute.",
+        drivers: [["Military mobilization", "positive"], ["Mongol threat", "negative"], ["Reward problem", "negative"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Go-Daigo; Ashikaga shoguns",
+        dynasty: "Kamakura / Muromachi",
+        government: "Military shogunate",
+        event: "The Kamakura shogunate falls and the Ashikaga establish Muromachi rule.",
+        why: "Fragmented loyalties and imperial restoration attempts produce a less centralized warrior order.",
+        drivers: [["Shogunate weakness", "negative"], ["Warrior autonomy", "mixed"], ["Kyoto culture", "positive"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Ashikaga shoguns",
+        dynasty: "Muromachi",
+        government: "Military shogunate",
+        event: "The Onin War begins in 1467, opening the Sengoku era of regional warfare.",
+        why: "Central authority collapses as regional lords compete, creating instability but also military and administrative innovation.",
+        drivers: [["Daimyo rivalry", "negative"], ["Local autonomy", "mixed"], ["Military innovation", "positive"]]
+      }
+    ]
+  },
+  {
+    id: "islamic-world",
+    name: "Islamic World",
+    region: "Middle East & North Africa",
+    periods: [
+      {
+        start: 1000,
+        end: 1099,
+        ruler: "Abbasid caliphs under Buyid and Seljuk influence",
+        dynasty: "Abbasid / Seljuk",
+        government: "Caliphate with regional powers",
+        event: "The Seljuks rise, and the First Crusade captures Jerusalem in 1099.",
+        why: "Political authority is fragmented, but scholarship, trade, and urban life remain deeply influential.",
+        drivers: [["Trade networks", "positive"], ["Political fragmentation", "negative"], ["Seljuk military power", "mixed"]]
+      },
+      {
+        start: 1100,
+        end: 1199,
+        ruler: "Seljuk rulers, Nur ad-Din, Saladin",
+        dynasty: "Seljuk / Ayyubid",
+        government: "Regional sultanates and caliphate",
+        event: "Saladin retakes Jerusalem in 1187 after consolidating Egypt and Syria.",
+        why: "Military and religious leadership can temporarily unify divided regions against crusader states.",
+        drivers: [["Regional consolidation", "positive"], ["Crusader pressure", "negative"], ["Trade wealth", "positive"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Ayyubids, Abbasids, Mamluks",
+        dynasty: "Ayyubid / Mamluk",
+        government: "Sultanates",
+        event: "The Mongols sack Baghdad in 1258, while the Mamluks stop Mongol expansion at Ain Jalut.",
+        why: "One centre of classical caliphal authority collapses, but new military regimes preserve regional power.",
+        drivers: [["Mongol invasion", "negative"], ["Mamluk military system", "positive"], ["Urban disruption", "negative"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Mamluk sultans; early Ottoman beys",
+        dynasty: "Mamluk / early Ottoman",
+        government: "Sultanates and frontier emirates",
+        event: "The Ottomans expand from an Anatolian frontier principality into the Balkans.",
+        why: "Frontier warfare, flexible institutions, and Byzantine weakness create an opening for Ottoman growth.",
+        drivers: [["Frontier expansion", "positive"], ["Byzantine weakness", "positive"], ["Plague effects", "negative"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Mehmed II and Bayezid II",
+        dynasty: "Ottoman",
+        government: "Sultanate",
+        event: "The Ottomans capture Constantinople in 1453.",
+        why: "Control of the city gives the Ottomans imperial legitimacy, strategic geography, and a bridge between Europe and Asia.",
+        drivers: [["Gunpowder siegecraft", "positive"], ["Strategic capital", "positive"], ["Imperial legitimacy", "positive"]]
+      }
+    ]
+  },
+  {
+    id: "aztec",
+    name: "Aztec Empire",
+    region: "Mesoamerica",
+    periods: [
+      {
+        start: 1000,
+        end: 1199,
+        ruler: "Regional city-state rulers",
+        dynasty: "Postclassic Mesoamerican states",
+        government: "City-states",
+        event: "Central Mexico is shaped by competing city-states after the decline of earlier powers.",
+        why: "Political fragmentation creates space for later Mexica migration and alliance-building.",
+        drivers: [["Urban traditions", "positive"], ["Regional rivalry", "mixed"], ["Migration", "mixed"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Early Mexica leaders",
+        dynasty: "Mexica migration period",
+        government: "Migrating polity",
+        event: "The Mexica move through central Mexico before founding Tenochtitlan.",
+        why: "A marginal group's search for territory sets up one of the most dramatic later imperial rises.",
+        drivers: [["Migration", "mixed"], ["Military adaptation", "positive"], ["Political marginality", "negative"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Acamapichtli and successors",
+        dynasty: "Early Mexica rulers",
+        government: "City-state",
+        event: "Tenochtitlan is founded in 1325 and grows through alliance and tribute politics.",
+        why: "Lake geography, military service, and alliance diplomacy help a new city become regionally important.",
+        drivers: [["Lake agriculture", "positive"], ["Alliance politics", "positive"], ["Tribute pressure", "mixed"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Itzcoatl, Moctezuma I, Ahuitzotl",
+        dynasty: "Aztec Triple Alliance",
+        government: "Imperial tribute alliance",
+        event: "The Triple Alliance forms in 1428 and expands into a major Mesoamerican empire.",
+        why: "Military expansion and tribute extraction create power quickly, but resentment among subject peoples becomes a structural weakness.",
+        drivers: [["Military expansion", "positive"], ["Tribute economy", "positive"], ["Subject resentment", "negative"]]
+      }
+    ]
+  },
+  {
+    id: "mali",
+    name: "Mali Empire",
+    region: "West Africa",
+    periods: [
+      {
+        start: 1000,
+        end: 1199,
+        ruler: "Ghana successors and regional Mandinka powers",
+        dynasty: "Pre-Mali polities",
+        government: "Regional kingdoms",
+        event: "West African trade networks continue around gold, salt, and trans-Saharan routes.",
+        why: "Control of trade routes and gold fields provides the economic foundation for later imperial expansion.",
+        drivers: [["Gold trade", "positive"], ["Saharan routes", "positive"], ["Regional competition", "mixed"]]
+      },
+      {
+        start: 1200,
+        end: 1299,
+        ruler: "Sundiata Keita and successors",
+        dynasty: "Keita",
+        government: "Empire",
+        event: "Sundiata establishes Mali after victory at Kirina around 1235.",
+        why: "Military success and control of trade corridors turn Mali into a major West African power.",
+        drivers: [["Trade control", "positive"], ["Military victory", "positive"], ["Imperial integration", "positive"]]
+      },
+      {
+        start: 1300,
+        end: 1399,
+        ruler: "Mansa Musa and successors",
+        dynasty: "Keita",
+        government: "Empire",
+        event: "Mansa Musa's pilgrimage advertises Mali's wealth across the Islamic world.",
+        why: "Gold wealth, scholarship, and Islamic connections make Mali globally visible.",
+        drivers: [["Gold wealth", "positive"], ["Islamic scholarship", "positive"], ["Long-distance trade", "positive"]]
+      },
+      {
+        start: 1400,
+        end: 1500,
+        ruler: "Later Mali mansas",
+        dynasty: "Keita",
+        government: "Empire",
+        event: "Mali's influence declines as Songhai and regional powers rise.",
+        why: "Large territorial systems are hard to hold when trade routes shift and ambitious rivals grow stronger.",
+        drivers: [["Songhai rivalry", "negative"], ["Trade shifts", "negative"], ["Imperial scale", "mixed"]]
+      }
+    ]
+  }
+];
+
+const snapshots = [
+  {
+    start: 1000,
+    end: 1099,
+    text: "Around the eleventh century, Europe is fragmented into feudal powers, Song China is economically and technologically vibrant, Japan is still court-centered, and West African trade systems are laying the foundations for later empires."
+  },
+  {
+    start: 1100,
+    end: 1199,
+    text: "The twelfth century is a world of consolidation and pressure: Capetian France grows stronger, England becomes Plantagenet, the Song court shifts south, Japan enters warrior government, and crusader conflict reshapes the eastern Mediterranean."
+  },
+  {
+    start: 1200,
+    end: 1299,
+    text: "The thirteenth century is dominated by Mongol expansion, constitutional pressure in England, French royal growth, Kamakura Japan's defensive mobilization, and the rise of Mali in West Africa."
+  },
+  {
+    start: 1300,
+    end: 1399,
+    text: "The fourteenth century brings severe shocks and new orders: plague, war, dynastic collapse, the Ming restoration, the rise of Ottoman power, and the founding growth of Tenochtitlan."
+  },
+  {
+    start: 1400,
+    end: 1500,
+    text: "The fifteenth century is a turning-point age: Constantinople falls, Ming China projects and then limits maritime power, France and England rebuild after war, Japan fractures, and the Aztec Empire rapidly expands."
+  }
+];
+
+const defaultSlots = ["england", "france", "china", "islamic-world", "aztec"];
+const slider = document.querySelector("#yearSlider");
+const selectedYear = document.querySelector("#selectedYear");
+const selectedBand = document.querySelector("#selectedBand");
+const cards = document.querySelector("#cards");
+const template = document.querySelector("#cardTemplate");
+const snapshot = document.querySelector("#globalSnapshot");
+const selectors = ["slot1", "slot2", "slot3", "slot4", "slot5"].map((id) => document.querySelector(`#${id}`));
+
+const pinned = new Set();
+
+function periodFor(civilization, year) {
+  return civilization.periods.find((period) => year >= period.start && year <= period.end) || civilization.periods[0];
+}
+
+function snapshotFor(year) {
+  return snapshots.find((item) => year >= item.start && year <= item.end)?.text || snapshots[0].text;
+}
+
+function populateSelectors() {
+  selectors.forEach((select, index) => {
+    civilizations.forEach((civilization) => {
+      const option = document.createElement("option");
+      option.value = civilization.id;
+      option.textContent = civilization.name;
+      select.append(option);
+    });
+    select.value = defaultSlots[index];
+    select.addEventListener("change", render);
+  });
+}
+
+function render() {
+  const year = Number(slider.value);
+  const bandEnd = year + 9;
+  selectedYear.textContent = year;
+  selectedBand.textContent = `${year}-${bandEnd}`;
+  snapshot.textContent = snapshotFor(year);
+  cards.replaceChildren();
+
+  selectors.forEach((select, index) => {
+    const civilization = civilizations.find((item) => item.id === select.value);
+    const period = periodFor(civilization, year);
+    const node = template.content.firstElementChild.cloneNode(true);
+    const cardKey = `${index}-${civilization.id}`;
+
+    node.classList.toggle("pinned", pinned.has(cardKey));
+    node.querySelector(".region").textContent = civilization.region;
+    node.querySelector("h2").textContent = civilization.name;
+    node.querySelector(".ruler").textContent = period.ruler;
+    node.querySelector(".dynasty").textContent = period.dynasty;
+    node.querySelector(".government").textContent = period.government;
+    node.querySelector(".event").textContent = period.event;
+    node.querySelector(".why").textContent = period.why;
+
+    const pinButton = node.querySelector(".pin-button");
+    pinButton.setAttribute("aria-pressed", String(pinned.has(cardKey)));
+    pinButton.addEventListener("click", () => {
+      if (pinned.has(cardKey)) {
+        pinned.delete(cardKey);
+      } else {
+        pinned.add(cardKey);
+      }
+      render();
+    });
+
+    const driverContainer = node.querySelector(".drivers");
+    period.drivers.forEach(([label, type]) => {
+      const driver = document.createElement("span");
+      driver.className = `driver ${type}`;
+      driver.textContent = label;
+      driverContainer.append(driver);
+    });
+
+    cards.append(node);
+  });
+}
+
+populateSelectors();
+slider.addEventListener("input", render);
+render();
