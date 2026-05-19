@@ -12,6 +12,7 @@ This prototype includes:
 - Pressure and momentum tags for historical drivers
 - Pin buttons for comparison cards
 - Source links for each civilization
+- A schematic world map that updates approximate historical extents from the selected panels and year
 
 This is intentionally a small browser-only MVP. The app is still using local JavaScript data so it can be shaped quickly before moving to a database.
 
@@ -24,5 +25,8 @@ The current data already maps cleanly to future Supabase tables:
 - `events`: period id, title, description, importance
 - `drivers`: period id, label, effect type
 - `sources`: civilization id or period id, title, url
+- `map_extents`: civilization id, start year, end year, label, geometry
 
 The next natural step is to separate the data from `app.js` into a JSON file, then expand it with more periods and sources before creating Supabase tables.
+
+The current map layer is deliberately approximate. It proves the interaction model first; proper historical borders would later need curated GIS-style data.

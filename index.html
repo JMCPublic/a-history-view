@@ -54,12 +54,21 @@
 
       <section class="map-band" aria-label="World overview">
         <div class="map-panel">
-          <div class="grid-lines"></div>
-          <div class="region-marker europe">Europe</div>
-          <div class="region-marker middle-east">Middle East</div>
-          <div class="region-marker east-asia">East Asia</div>
-          <div class="region-marker americas">Americas</div>
-          <div class="region-marker africa">Africa</div>
+          <svg id="worldMap" class="world-map" viewBox="0 0 1000 500" role="img" aria-label="Approximate historical extent map">
+            <g class="map-grid">
+              <path d="M0 125H1000M0 250H1000M0 375H1000M125 0V500M250 0V500M375 0V500M500 0V500M625 0V500M750 0V500M875 0V500"></path>
+            </g>
+            <g class="continent-outlines">
+              <path d="M90 118 155 78 240 92 286 137 260 194 206 220 178 285 132 265 118 206 66 176Z"></path>
+              <path d="M236 276 286 305 318 378 292 452 241 425 210 340Z"></path>
+              <path d="M436 96 507 78 580 108 626 92 720 126 802 118 902 174 858 238 738 226 668 258 592 224 520 240 456 206 398 152Z"></path>
+              <path d="M472 213 552 226 596 300 572 392 512 450 466 380 438 292Z"></path>
+              <path d="M828 330 878 306 930 332 914 380 858 380Z"></path>
+            </g>
+            <g id="extentLayer"></g>
+          </svg>
+          <div id="mapLegend" class="map-legend" aria-label="Map legend"></div>
+          <p class="map-note">Approximate extent layer for the selected panels and year</p>
         </div>
         <aside class="moment-panel">
           <h2>Global Snapshot</h2>

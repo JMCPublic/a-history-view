@@ -568,6 +568,111 @@ const snapshots = [
   }
 ];
 
+const mapExtents = {
+  england: [
+    { start: 1000, end: 1500, label: "England", shapes: [{ type: "ellipse", cx: 474, cy: 127, rx: 14, ry: 20 }] }
+  ],
+  france: [
+    { start: 1000, end: 1199, label: "Capetian France", shapes: [{ type: "ellipse", cx: 492, cy: 157, rx: 20, ry: 22 }] },
+    { start: 1200, end: 1500, label: "France", shapes: [{ type: "ellipse", cx: 494, cy: 160, rx: 30, ry: 32 }] }
+  ],
+  china: [
+    { start: 1000, end: 1099, label: "Northern Song China", shapes: [{ type: "ellipse", cx: 742, cy: 188, rx: 62, ry: 40 }] },
+    { start: 1100, end: 1199, label: "Southern Song China", shapes: [{ type: "ellipse", cx: 742, cy: 216, rx: 54, ry: 34 }] },
+    { start: 1200, end: 1299, label: "Yuan China", shapes: [{ type: "ellipse", cx: 735, cy: 185, rx: 86, ry: 62 }] },
+    { start: 1300, end: 1500, label: "Ming China", shapes: [{ type: "ellipse", cx: 742, cy: 198, rx: 72, ry: 52 }] }
+  ],
+  japan: [
+    { start: 1000, end: 1500, label: "Japan", shapes: [{ type: "ellipse", cx: 854, cy: 198, rx: 18, ry: 42, rotate: -18 }] }
+  ],
+  "islamic-world": [
+    {
+      start: 1000,
+      end: 1199,
+      label: "Islamic polities",
+      shapes: [{ type: "polygon", points: "488,194 560,166 656,184 674,234 596,272 508,250" }]
+    },
+    {
+      start: 1200,
+      end: 1299,
+      label: "Ayyubid / Mamluk centres",
+      shapes: [{ type: "polygon", points: "514,208 588,190 635,218 610,278 526,268" }]
+    },
+    {
+      start: 1300,
+      end: 1500,
+      label: "Mamluk and Ottoman zones",
+      shapes: [{ type: "polygon", points: "502,174 586,152 646,190 626,266 526,258 480,214" }]
+    }
+  ],
+  byzantine: [
+    {
+      start: 1000,
+      end: 1099,
+      label: "Byzantine Empire",
+      shapes: [{ type: "polygon", points: "504,170 548,154 598,170 596,210 540,222 500,202" }]
+    },
+    {
+      start: 1100,
+      end: 1199,
+      label: "Byzantine Empire",
+      shapes: [{ type: "polygon", points: "512,172 552,158 586,176 580,210 532,214 504,198" }]
+    },
+    {
+      start: 1200,
+      end: 1399,
+      label: "Reduced Byzantium",
+      shapes: [{ type: "ellipse", cx: 538, cy: 184, rx: 28, ry: 18 }]
+    },
+    {
+      start: 1400,
+      end: 1500,
+      label: "Constantinople",
+      shapes: [{ type: "ellipse", cx: 536, cy: 183, rx: 9, ry: 9 }]
+    }
+  ],
+  mongol: [
+    {
+      start: 1000,
+      end: 1199,
+      label: "Mongol steppe groups",
+      shapes: [{ type: "polygon", points: "650,126 764,106 830,134 804,164 686,164" }]
+    },
+    {
+      start: 1200,
+      end: 1299,
+      label: "Mongol Empire",
+      shapes: [{ type: "polygon", points: "524,124 624,88 784,92 894,132 870,218 742,236 612,212 516,178" }]
+    },
+    {
+      start: 1300,
+      end: 1399,
+      label: "Mongol successor khanates",
+      shapes: [
+        { type: "polygon", points: "552,128 646,104 716,132 692,184 584,178" },
+        { type: "polygon", points: "706,142 820,126 880,168 840,226 724,214" }
+      ]
+    },
+    {
+      start: 1400,
+      end: 1500,
+      label: "Post-imperial Mongol polities",
+      shapes: [{ type: "polygon", points: "662,118 778,104 834,134 798,172 682,164" }]
+    }
+  ],
+  aztec: [
+    { start: 1000, end: 1299, label: "Central Mexican city-states", shapes: [{ type: "ellipse", cx: 210, cy: 222, rx: 22, ry: 18 }] },
+    { start: 1300, end: 1399, label: "Tenochtitlan", shapes: [{ type: "ellipse", cx: 212, cy: 224, rx: 18, ry: 16 }] },
+    { start: 1400, end: 1500, label: "Aztec Triple Alliance", shapes: [{ type: "ellipse", cx: 212, cy: 224, rx: 34, ry: 26 }] }
+  ],
+  mali: [
+    { start: 1000, end: 1199, label: "West African trade zones", shapes: [{ type: "ellipse", cx: 476, cy: 274, rx: 48, ry: 25 }] },
+    { start: 1200, end: 1399, label: "Mali Empire", shapes: [{ type: "ellipse", cx: 470, cy: 278, rx: 68, ry: 38 }] },
+    { start: 1400, end: 1500, label: "Later Mali", shapes: [{ type: "ellipse", cx: 466, cy: 280, rx: 48, ry: 28 }] }
+  ]
+};
+
+const slotColors = ["#d9a441", "#72b37c", "#6ea5d8", "#cf6f5f", "#9a85d6"];
 const defaultSlots = ["england", "byzantine", "china", "islamic-world", "mongol"];
 const slider = document.querySelector("#yearSlider");
 const selectedYear = document.querySelector("#selectedYear");
@@ -575,6 +680,8 @@ const selectedBand = document.querySelector("#selectedBand");
 const cards = document.querySelector("#cards");
 const template = document.querySelector("#cardTemplate");
 const snapshot = document.querySelector("#globalSnapshot");
+const extentLayer = document.querySelector("#extentLayer");
+const mapLegend = document.querySelector("#mapLegend");
 const selectors = ["slot1", "slot2", "slot3", "slot4", "slot5"].map((id) => document.querySelector(`#${id}`));
 
 const pinned = new Set();
@@ -585,6 +692,55 @@ function periodFor(civilization, year) {
 
 function snapshotFor(year) {
   return snapshots.find((item) => year >= item.start && year <= item.end)?.text || snapshots[0].text;
+}
+
+function extentFor(civilizationId, year) {
+  return mapExtents[civilizationId]?.find((extent) => year >= extent.start && year <= extent.end);
+}
+
+function createSvgElement(tag, attributes) {
+  const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+  return element;
+}
+
+function renderMap(year, selectedCivilizations) {
+  extentLayer.replaceChildren();
+  mapLegend.replaceChildren();
+
+  selectedCivilizations.forEach((civilization, index) => {
+    const extent = extentFor(civilization.id, year);
+    if (!extent) return;
+
+    const color = slotColors[index];
+    const group = createSvgElement("g", {
+      class: "extent-group",
+      "aria-label": `${civilization.name}: ${extent.label}`
+    });
+
+    extent.shapes.forEach((shape) => {
+      const commonAttributes = {
+        class: "extent-shape",
+        fill: color,
+        stroke: color
+      };
+
+      if (shape.type === "ellipse") {
+        const transform = shape.rotate ? `rotate(${shape.rotate} ${shape.cx} ${shape.cy})` : "";
+        group.append(createSvgElement("ellipse", { ...commonAttributes, cx: shape.cx, cy: shape.cy, rx: shape.rx, ry: shape.ry, transform }));
+      }
+
+      if (shape.type === "polygon") {
+        group.append(createSvgElement("polygon", { ...commonAttributes, points: shape.points }));
+      }
+    });
+
+    const label = document.createElement("span");
+    label.className = "map-key";
+    label.innerHTML = `<span style="background:${color}"></span>${civilization.name}`;
+    mapLegend.append(label);
+    extentLayer.append(group);
+  });
 }
 
 function populateSelectors() {
@@ -607,9 +763,10 @@ function render() {
   selectedBand.textContent = `${year}-${bandEnd}`;
   snapshot.textContent = snapshotFor(year);
   cards.replaceChildren();
+  const selectedCivilizations = selectors.map((select) => civilizations.find((item) => item.id === select.value));
+  renderMap(year, selectedCivilizations);
 
-  selectors.forEach((select, index) => {
-    const civilization = civilizations.find((item) => item.id === select.value);
+  selectedCivilizations.forEach((civilization, index) => {
     const period = periodFor(civilization, year);
     const node = template.content.firstElementChild.cloneNode(true);
     const cardKey = `${index}-${civilization.id}`;
