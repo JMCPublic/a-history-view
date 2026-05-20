@@ -682,6 +682,7 @@ const template = document.querySelector("#cardTemplate");
 const snapshot = document.querySelector("#globalSnapshot");
 const extentLayer = document.querySelector("#extentLayer");
 const mapLegend = document.querySelector("#mapLegend");
+const mapInspector = document.querySelector("#mapInspector");
 const selectors = ["slot1", "slot2", "slot3", "slot4", "slot5"].map((id) => document.querySelector(`#${id}`));
 
 const pinned = new Set();
@@ -704,9 +705,21 @@ function createSvgElement(tag, attributes) {
   return element;
 }
 
+function setMapInspector(title, detail) {
+  mapInspector.querySelector("strong").textContent = title;
+  mapInspector.querySelector("span").textContent = detail;
+}
+
+function setActiveExtent(index, isActive) {
+  document.querySelectorAll(`[data-map-index="${index}"]`).forEach((item) => {
+    item.classList.toggle("active", isActive);
+  });
+}
+
 function renderMap(year, selectedCivilizations) {
   extentLayer.replaceChildren();
   mapLegend.replaceChildren();
+  setMapInspector("Map Layer", `Showing ${selectedCivilizations.length} selected panels for ${year}-${year + 9}.`);
 
   selectedCivilizations.forEach((civilization, index) => {
     const extent = extentFor(civilization.id, year);
@@ -715,29 +728,66 @@ function renderMap(year, selectedCivilizations) {
     const color = slotColors[index];
     const group = createSvgElement("g", {
       class: "extent-group",
+      "data-map-index": index,
       "aria-label": `${civilization.name}: ${extent.label}`
     });
+    const detail = `${extent.label} in ${year}-${year + 9}. ${civilization.region}.`;
 
     extent.shapes.forEach((shape) => {
       const commonAttributes = {
         class: "extent-shape",
+        tabindex: "0",
+        "data-map-index": index,
         fill: color,
-        stroke: color
+        stroke: color,
+        "aria-label": `${civilization.name}: ${detail}`
       };
+      let shapeElement;
 
       if (shape.type === "ellipse") {
         const transform = shape.rotate ? `rotate(${shape.rotate} ${shape.cx} ${shape.cy})` : "";
-        group.append(createSvgElement("ellipse", { ...commonAttributes, cx: shape.cx, cy: shape.cy, rx: shape.rx, ry: shape.ry, transform }));
+        shapeElement = createSvgElement("ellipse", { ...commonAttributes, cx: shape.cx, cy: shape.cy, rx: shape.rx, ry: shape.ry, transform });
       }
 
       if (shape.type === "polygon") {
-        group.append(createSvgElement("polygon", { ...commonAttributes, points: shape.points }));
+        shapeElement = createSvgElement("polygon", { ...commonAttributes, points: shape.points });
+      }
+
+      if (shapeElement) {
+        const title = createSvgElement("title", {});
+        title.textContent = `${civilization.name}: ${extent.label}`;
+        shapeElement.append(title);
+        shapeElement.addEventListener("mouseenter", () => {
+          setActiveExtent(index, true);
+          setMapInspector(civilization.name, detail);
+        });
+        shapeElement.addEventListener("focus", () => {
+          setActiveExtent(index, true);
+          setMapInspector(civilization.name, detail);
+        });
+        shapeElement.addEventListener("mouseleave", () => setActiveExtent(index, false));
+        shapeElement.addEventListener("blur", () => setActiveExtent(index, false));
+        group.append(shapeElement);
       }
     });
 
-    const label = document.createElement("span");
+    const label = document.createElement("button");
+    const swatch = document.createElement("span");
     label.className = "map-key";
-    label.innerHTML = `<span style="background:${color}"></span>${civilization.name}`;
+    label.type = "button";
+    label.dataset.mapIndex = index;
+    swatch.style.background = color;
+    label.append(swatch, civilization.name);
+    label.addEventListener("mouseenter", () => {
+      setActiveExtent(index, true);
+      setMapInspector(civilization.name, detail);
+    });
+    label.addEventListener("focus", () => {
+      setActiveExtent(index, true);
+      setMapInspector(civilization.name, detail);
+    });
+    label.addEventListener("mouseleave", () => setActiveExtent(index, false));
+    label.addEventListener("blur", () => setActiveExtent(index, false));
     mapLegend.append(label);
     extentLayer.append(group);
   });

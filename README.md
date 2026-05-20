@@ -13,6 +13,7 @@ This prototype includes:
 - Pin buttons for comparison cards
 - Source links for each civilization
 - A schematic world map that updates approximate historical extents from the selected panels and year
+- Hoverable/focusable map extents and legend keys with a small inspector panel
 
 This is intentionally a small browser-only MVP. The app is still using local JavaScript data so it can be shaped quickly before moving to a database.
 

@@ -188,6 +188,15 @@ select {
   stroke-width: 3;
   filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.14));
   transition: all 180ms ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.extent-shape.active,
+.extent-shape:focus {
+  fill-opacity: 0.52;
+  stroke-opacity: 1;
+  stroke-width: 5;
 }
 
 .map-legend {
@@ -204,11 +213,14 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  appearance: none;
   border: 1px solid rgba(243, 239, 227, 0.18);
   background: rgba(16, 18, 22, 0.78);
   color: #e9e0d3;
   padding: 6px 8px;
   font-size: 0.76rem;
+  font: inherit;
+  cursor: pointer;
 }
 
 .map-key span {
@@ -216,6 +228,39 @@ select {
   height: 10px;
   border-radius: 50%;
   box-shadow: 0 0 12px currentColor;
+}
+
+.map-key.active,
+.map-key:focus {
+  border-color: rgba(217, 164, 65, 0.72);
+  color: var(--ink);
+  outline: none;
+}
+
+.map-inspector {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  max-width: min(360px, calc(100% - 28px));
+  border: 1px solid rgba(243, 239, 227, 0.16);
+  background: rgba(16, 18, 22, 0.82);
+  padding: 10px 12px;
+}
+
+.map-inspector strong,
+.map-inspector span {
+  display: block;
+}
+
+.map-inspector strong {
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.map-inspector span {
+  color: #d9d0c2;
+  font-size: 0.82rem;
+  line-height: 1.35;
 }
 
 .map-note {
